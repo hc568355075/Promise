@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <style>
+            body{
+                margin: 50px;
+            }
+            #btn{
+                background-color: orange;
+                border:none;
+                width: 100px;
+                height: 30px;
+                border-radius: 5px;
+            }
+            #btn:hover{
+                background-color: rgb(223, 154, 26);
+                cursor: pointer;
+            }
+            .line{
+                border: 1px solid #ddd;
+                margin-bottom: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2 class="page-header">Promise 初体验</h2>
+            <div class="line"></div>
+            <button class="btn btn-primary" id="btn">点击抽奖</button>
+        </div>
+        <script>
+            // 生成随机数
+            function rand(m,n){
+                return Math.ceil(Math.random() * (n-m+1)) + m-1
+            }
+            const btn = document.querySelector('#btn')
+            btn.addEventListener('click',function(){
+                // 定时器
+                // setTimeout(()=>{
+                //     let n = rand(1,100)
+                //     if(n<30){
+                //     alert('恭喜中奖100000000RMB')
+                //     }else{
+                //     alert('再接再励')
+                //     }
+                // },1000)
+                
+                // Promise 形式实现
+                const p =new Promise((resolve,reject)=>{
+                    setTimeout(()=>{
+                        let n = rand(1,100)
+                        if(n <= 30){
+                            resolve()
+                        }else{
+                            reject()
+                        }
+                    },1000)
+                })
+                p.then(()=>{
+                    alert('恭喜中奖100000000RMB')
+                },()=>{
+                    alert('再接再厉')
+                }
+                )
+            })
+        </script>
+    </body>
+</html>
