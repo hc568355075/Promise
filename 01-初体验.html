@@ -17,7 +17,7 @@
                 border-radius: 5px;
             }
             #btn:hover{
-                background-color: rgb(223, 154, 26);
+                background-color: rgb(235, 158, 16);
                 cursor: pointer;
             }
             .line{
@@ -54,16 +54,16 @@
                     setTimeout(()=>{
                         let n = rand(1,100)
                         if(n <= 30){
-                            resolve()
+                            resolve(n)
                         }else{
-                            reject()
+                            reject(n)
                         }
                     },1000)
                 })
-                p.then(()=>{
-                    alert('恭喜中奖100000000RMB')
-                },()=>{
-                    alert('再接再厉')
+                p.then((value)=>{
+                    alert('恭喜中奖100000000RMB,您的中奖数字是 '+value)
+                },(reason)=>{
+                    alert('再接再厉，您的中奖数字是 ' +reason)
                 }
                 )
             })
