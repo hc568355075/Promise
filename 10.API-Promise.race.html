@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise.all</title>
+</head>
+<body>
+    <!-- 
+        Promise.race
+            第一个出现的值决定race是成功或失败，并展现对应的值（类似于赛跑，第一个到终点冠军就是谁）
+     -->
+    <script>
+        let p1 = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                resolve('ok')
+            }, 1000);
+        })
+        let p2 = Promise.resolve('i live you')
+        // let p3 = Promise.resolve('me too')
+        let p3 = Promise.reject('i don`t live you')
+        let p4 = Promise.reject('no!')
+
+        const result = Promise.race([p1,p2,p3,p4])
+        
+        console.log(result);
+        
+    </script>
+</body>
+</html>

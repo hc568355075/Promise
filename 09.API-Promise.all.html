@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise.all</title>
+</head>
+<body>
+    <!-- 
+        Promise.all 
+            成功会按数组方式展现里面的值
+            失败则只会展现第一个
+     -->
+    <script>
+        let p1 = new Promise((resolve,reject)=>{
+            resolve('ok')
+        })
+        let p2 = Promise.resolve('i live you')
+        // let p3 = Promise.resolve('me too')
+        let p3 = Promise.reject('i don`t live you')
+        let p4 = Promise.reject('no!')
+
+        const result = Promise.all([p1,p2,p3,p4])
+        
+        console.log(result);
+        
+    </script>
+</body>
+</html>

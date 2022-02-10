@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise 指定多个回调成功(失败)</title>
+</head>
+<body>
+    <script type="text/javascript" >
+    // 当Promise状态改变时 指定多个回调成功(失败)都会进行回调
+    let p = new Promise((resolve,reject)=>{
+        resolve('成功')
+    })
+
+    p.then(value => {
+        console.log(value);
+    })
+
+    p.then(value=>{
+        alert(value)
+    })
+    </script>
+</body>
+</html>
