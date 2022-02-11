@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Promise 如果是同步的则会想改变状态
+                如果是异步任务则会先执行then，后面当Promise状态改变时在执行value
+     -->
+    <script type="text/javascript" >
+        let p = new Promise((resolve,reject)=>{
+            setTimeout(() => {
+                resolve('OK')
+            }, 1000);
+        })
+
+        p.then(value=>{
+            console.log(value);
+        },reason=>{
+
+        })
+    </script>
+</body>
+</html>

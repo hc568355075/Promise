@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise异常穿透</title>
+</head>
+<body>
+    <!-- 
+        Promise中断链式调用且只有一种方法，就是把状态改为pending，返回一个空的Promise对象就是一个pending，后面的代码就不会去执行
+     -->
+    <script>
+        const p = new Promise((resolve,reject)=>{
+            resolve("OK")
+        })
+
+        p.then(value=>{
+            console.log(value);
+            return new Promise(()=>{})
+        }).then(value=>{
+            console.log(222);
+        }).then(value=>{
+            console.log(333);
+        })
+    </script>
+</body>
+</html>
