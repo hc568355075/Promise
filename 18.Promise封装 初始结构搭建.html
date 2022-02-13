@@ -11,13 +11,17 @@
     <script>
         let p = new Promise((resolve,reject)=>{
             resolve('ok')
+            reject("error")
+            // 抛出
+            // throw "失败" //让try{}catch{}接收 ，否则下面代码无法执行
         })
 
-        p.then(value=>{
-            console.log(value);
-        },reason=>{
-            console.warn(reason);
-        })
+        console.log(p);
+        // p.then(value=>{
+        //     console.log(value);
+        // },reason=>{
+        //     console.warn(reason);
+        // })
     </script>
 </body>
 </html>
