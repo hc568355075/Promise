@@ -27,12 +27,12 @@ function Promise (executor){
 }
 
 Promise.prototype.then = function(onResolve,onReject){
-    // 调用回调函数 PromiseState
-    return new Promise ((resolve,reject)=>{
-        if(this.promiseState === "fulfilled"){
-           try {
-                // 输出内容
-            let result = onResolve(this.promiseRusult)
+    const self = this
+    // 封装
+    function callback(type){
+        try {
+            // 输出内容
+            let result = type(self.promiseRusult)
             if(result instanceof Promise){
                 result.then(value=>{
                     resolve(value)
@@ -42,19 +42,26 @@ Promise.prototype.then = function(onResolve,onReject){
             }else{
                 resolve(result)
             }
-           } catch (error) {
-               reject(error)
-           }
+        }catch (error) {
+            reject(error)
+        }
+    }
+    // 调用回调函数 PromiseState
+    return new Promise ((resolve,reject)=>{
+        if(this.promiseState === "fulfilled"){
+            callback(onResolve)
         }
         if(this.promiseState === "reject"){
-            onReject(this.promiseRusult)
+            callback(onReject)
          }
         if(this.promiseState === "pending"){
-            this.callbacks.push( {
-                onResolve: function(){
-                    onResolve(resolve)
-                },
-                onReject: onReject
+            this.callbacks.push({
+                    onResolve: function(){
+                       callback(onResolve)
+                    },
+                    onReject: function(){
+                        callback(onReject)
+                    }
             })
         }
     })
