@@ -42,10 +42,18 @@ function Promise (executor){
 
 Promise.prototype.then = function(onResolve,onReject){
     const self = this
-    // 封装
-   
+    // 判断回调函数参数
+    if(typeof onReject !== 'function'){
+        onReject = reason =>{
+            throw reason
+        }
+    }
+    if(typeof onResolve !== 'function'){
+        onResolve = reasolve => reasolve // reasolve=> {return reasolve}  ES6语法
+    }
     // 调用回调函数 PromiseState
     return new Promise ((resolve,reject)=>{
+        // 封装
         function callback(type){
             try {
                 // 输出内容
@@ -80,4 +88,7 @@ Promise.prototype.then = function(onResolve,onReject){
             })
         }
     })
+}
+Promise.prototype.catch = function(onReject){
+    return this.then(undefined,onReject)
 }

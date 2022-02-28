@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise封装 reasolve 封装</title>
+    <script src="./25.Promise.js"></script>
+</head>
+<body>
+    <script type="text/javascript" >
+        const p = Promise.reasolve('ok')
+        const p2 = Promise.reasolve(new Promise((reasolve,reaject)=>{
+            // reasolve('成功')
+            reaject('error')
+        }))
+
+        const p3 = Promise.reasolve(Promise.reasolve('最里面决定'))
+        console.log(p2);
+    </script>
+</body>
+</html>
